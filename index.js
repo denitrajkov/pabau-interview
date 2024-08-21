@@ -8,7 +8,7 @@ function findPath(matrix) {
     var _a, _b, _c, _d, _e;
     var startRow = 0, startCol = 0;
     var direction = 'right';
-    // Наоѓање на стартната позиција
+
     for (var i = 0; i < matrix.length; i++) {
         var startIdx = matrix[i].indexOf('>');
         if (startIdx !== -1) {
@@ -26,18 +26,18 @@ function findPath(matrix) {
         col += dCol;
         var currentChar = (_a = matrix[row]) === null || _a === void 0 ? void 0 : _a[col];
         if (currentChar === undefined)
-            break; // Проверка за излегување од граници
+            break; 
         if (currentChar === 's') {
             path += 's';
             break;
         }
         else if (currentChar >= 'A' && currentChar <= 'Z') {
             letters += currentChar;
-            path += currentChar; // Додавање на карактерот на патеката
+            path += currentChar; 
         }
         else if (currentChar === '+') {
-            path += '+'; // Додавање на '+' на патеката
-            // Определување на новата насока на раскрсница
+            path += '+'; 
+            
             var upCell = (_b = matrix[row - 1]) === null || _b === void 0 ? void 0 : _b[col];
             var downCell = (_c = matrix[row + 1]) === null || _c === void 0 ? void 0 : _c[col];
             var leftCell = (_d = matrix[row]) === null || _d === void 0 ? void 0 : _d[col - 1];
@@ -50,12 +50,12 @@ function findPath(matrix) {
             }
         }
         else {
-            path += currentChar; // Додавање на останатите карактери на патеката
+            path += currentChar; 
         }
     }
     return { path: path, letters: letters };
 }
-// Пример за користење:
+
 var matrix = [
     ['>', '-', '-', '-', 'A', '-', '-', '-', '+'],
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|'],
@@ -64,5 +64,5 @@ var matrix = [
     ['+', '-', '-', '-', '+', ' ', ' ', ' ', ' '],
 ];
 var result = findPath(matrix);
-console.log("Path:", result.path); // Output: Path @---A---+|C|+---+|+-B-s
-console.log("Letters:", result.letters); // Output: Letters ACB
+console.log("Path:", result.path); 
+console.log("Letters:", result.letters); 

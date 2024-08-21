@@ -9,8 +9,7 @@ const directionsMap: Record<Direction, [number, number]> = {
 function findPath(matrix: string[][]): { path: string; letters: string } {
     let startRow = 0, startCol = 0;
     let direction: Direction = 'right';
-
-    // Наоѓање на стартната позиција
+    
     for (let i = 0; i < matrix.length; i++) {
         const startIdx = matrix[i].indexOf('>');
         if (startIdx !== -1) {
@@ -30,17 +29,17 @@ function findPath(matrix: string[][]): { path: string; letters: string } {
         col += dCol;
 
         const currentChar = matrix[row]?.[col];
-        if (currentChar === undefined) break;  // Проверка за излегување од граници
+        if (currentChar === undefined) break; 
 
         if (currentChar === 's') {
             path += 's';
             break;
         } else if (currentChar >= 'A' && currentChar <= 'Z') {
             letters += currentChar;
-            path += currentChar; // Додавање на карактерот на патеката
+            path += currentChar; 
         } else if (currentChar === '+') {
-            path += '+'; // Додавање на '+' на патеката
-            // Определување на новата насока на раскрсница
+            path += '+'; 
+            
             const upCell = matrix[row - 1]?.[col];
             const downCell = matrix[row + 1]?.[col];
             const leftCell = matrix[row]?.[col - 1];
@@ -52,14 +51,14 @@ function findPath(matrix: string[][]): { path: string; letters: string } {
                 direction = upCell !== undefined && upCell !== ' ' ? 'up' : 'down';
             }
         } else {
-            path += currentChar; // Додавање на останатите карактери на патеката
+            path += currentChar; 
         }
     }
 
     return { path, letters };
 }
 
-// Пример за користење:
+
 const matrix = [
     ['>', '-', '-', '-', 'A', '-', '-', '-', '+'],
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|'],
@@ -69,5 +68,5 @@ const matrix = [
 ];
 
 const result = findPath(matrix);
-console.log("Path:", result.path);     // Output: Path @---A---+|C|+---+|+-B-s
-console.log("Letters:", result.letters); // Output: Letters ACB
+console.log("Path:", result.path);     
+console.log("Letters:", result.letters); 
